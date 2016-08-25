@@ -24,32 +24,8 @@
   </head>
 
   <body>
-
-    <div class=container-fluid>
-      <table class="table">
-        <thead style="background-color: #e3f2fd">
-          <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Summary</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">4/20</th>
-            <td id="example">Ok</td>
-            <td>Weed</td>
-          </tr>
-          <tr>
-            <th scope="row">5/30</th>
-            <td>1:00am</td>
-            <td>Sleep</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <script type="text/babel" src="{% static 'scripts/react-example.js' %}"></script>
+    <div class=container id="content"></div>
+    <script type="text/babel" src="{% static 'scripts/react-example.jsx' %}"></script>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

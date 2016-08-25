@@ -12,7 +12,7 @@ router.register(r'^calendars', views.CalendarViewSet)
 
 urlpatterns = [
     url(r'^$', views.main, name="main"),
-    url(r'^list$', views.list, name="list"),
+    url(r'^agenda$', views.list, name="list"),
     url(r'^week$', views.week, name="week"),
 ]
 
