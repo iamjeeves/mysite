@@ -52,7 +52,7 @@ const ListTable=React.createClass({
     });
 
     return (
-      <table className="table">
+      <table className="table table-bordered">
         <thead style={ {backgroundColor: "#e3f2fd"} }>
           <tr>
             <th>Date</th>
@@ -85,20 +85,33 @@ const HourRow=React.createClass({
 
 const WeekTable=React.createClass({
   render: function() {
+    // Create 24 rows for the 24 hours of the day
     let rows = [(<HourRow hour="12:00 AM" key="12:00 AM" />)];
     for (let i = 1; i < 12; ++i) {
       rows.push(<HourRow hour={i + ":00 AM"} key={i + ":00 AM"}/>);
+      rows.push(<HourRow hour={i + ":30 AM"} key={i + ":30 AM"}/>);
     }
     rows.push(<HourRow hour={"12:00 PM"} key={"12:00 PM"}/>);
     for (let i = 1; i < 12; ++i) {
       rows.push(<HourRow hour={i + ":00 AM"} key={i + ":00 PM"} />);
+      rows.push(<HourRow hour={i + ":30 AM"} key={i + ":30 PM"} />);
     }
 
+    // Get the dates of the week
+    let daysOfWeek = [<th>SHIT</th>];
+    let date = new Date();
+    date.setDate(date.getDate() - date.getDay());
+    for (let i = 0; i < 7; ++i) {
+      daysOfWeek.push(<th>{(date.getMonth() + 1) + "/" + date.getDate()}</th>);
+      date.setDate(date.getDate() + 1);
+    }
+
+
     return(
-      <table className="table table-bordered" style={ {backgroundColor: "#EBDEF0"} }>
+      <table className="table table-bordered header-fixed">
         <thead>
           <tr style={ {backgroundColor: "#F2F3F4"} }>
-            <th></th>
+            <th>GOOD</th>
             <th>Sun</th>
             <th>Mon</th>
             <th>Tue</th>
@@ -107,8 +120,9 @@ const WeekTable=React.createClass({
             <th>Fri</th>
             <th>Sat</th>
           </tr>
+          <tr style={ {backgroundColor: "#F2F3F4"} }>{daysOfWeek}</tr>
         </thead>
-        <tbody>{rows}</tbody>
+          <tbody>{rows}</tbody>
       </table>
     );
   }
@@ -138,13 +152,9 @@ const NavigationBar=React.createClass({
   },
 
   render: function() {
-    const divStyle = {
-      height: "100vh",
-      overflow: "auto"
-    };
 
     return (
-      <div style={divStyle}>
+      <div>
         <nav className="navbar navbar-default">
           <ul className="nav navbar-nav">
             <li className="nav-item">
@@ -158,8 +168,10 @@ const NavigationBar=React.createClass({
             </li>
           </ul>
         </nav>
-          {this.state.showWeek ? <WeekTable /> : null}
-          {this.state.showList ? <ListTable events= {this.props.events}/> : null}
+          <div> 
+            {this.state.showWeek ? <WeekTable events={this.props.events} /> : null}
+            {this.state.showList ? <ListTable events={this.props.events} /> : null}
+          </div>
       </div>
     );
   }
