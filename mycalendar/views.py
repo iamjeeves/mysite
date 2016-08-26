@@ -25,7 +25,7 @@ class TaskViewSet(viewsets.ModelViewSet):
     serializer_class = TaskSerializer
 
 class EventViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+    queryset = Event.objects.all()
     serializer_class = EventSerializer
 
 class CalendarViewSet(viewsets.ModelViewSet):
